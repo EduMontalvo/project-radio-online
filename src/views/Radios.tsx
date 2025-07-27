@@ -1,6 +1,10 @@
+import RadioPlayer from "../components/RadioPlayer"
+
 const Radios = () => {
   return (
-    <div className="text-white">desde Radios</div>
+    <div className="w-full ">
+      <RadioPlayer />
+    </div>
   )
 }
 
