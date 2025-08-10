@@ -1,11 +1,10 @@
 import { Outlet } from "react-router-dom"
+import Header from "../components/Header"
 const Layout = () => {
   return (
     <>
-      <div className="h-screen w-screen">
-        <header className="text-white font-bold p-2  ">
-          <h1 className="text-2xl text-black">Radio</h1>
-        </header>
+      <div className="h-full w-screen bg-black relative ">
+        <Header />
         <Outlet />
       </div>
     </>
