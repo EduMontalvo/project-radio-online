@@ -15,3 +15,4 @@ export const RadiosSchema = z.array(RadioSchema)
 
 //tipado
 export type Radio = z.infer<typeof RadioSchema>
+export type Radios = z.infer<typeof RadiosSchema>

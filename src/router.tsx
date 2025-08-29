@@ -21,7 +21,6 @@ export const router = createBrowserRouter([
     },
     {
         path: "/about",
-        element: <Layout />,
         children: [
             {
                 index: true,
@@ -31,7 +30,6 @@ export const router = createBrowserRouter([
     },
     {
         path: "/contact",
-        element: <Layout />,
         children: [
             {
                 index: true,

@@ -3,7 +3,7 @@ import Header from "../components/Header"
 const Layout = () => {
   return (
     <>
-      <div className="h-full w-screen bg-black relative ">
+      <div className="min-h-screen w-screen bg-black relative md:w-full">
         <Header />
         <Outlet />
       </div>
