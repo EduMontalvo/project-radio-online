@@ -6,6 +6,7 @@ import RadioImgError from "./RadioImgError"
 import { Link, useParams } from "react-router-dom"
 import MultipleItems from "./MultipleItems"
 import SearchBar from "./SearchBar"
+import IconAlterno from "../assets/IconAlterno.png"
 
 const RadioPlayer = () => {
     const [now, setNow] = useState({ hours: '', minuts: '' })
@@ -94,13 +95,6 @@ const RadioPlayer = () => {
         }
     }
 
-    /* const filteredRadio = useMemo(() => {
-        return listRadios.filter(radio => radio.name === search)
-        setListRadios(filteredRadio)
-    }, [search])
-
-    console.log(search) */
-
     return (
         <>
             <div className="md:flex md:w-full">
@@ -108,14 +102,20 @@ const RadioPlayer = () => {
                 <div className="hidden md:fixed md:flex md:flex-col md:items-center md:justify-center md:w-[40%] md:pt-24 gap-3">
                     {radioSelected?.favicon?.trim() !== '' && radioSelected?.favicon?.trim() !== 'null' ?
                         (<div className="flex items-center bg-neutral-800 rounded-xl p-2">
-                            <img src={radioSelected?.favicon} alt={radioSelected?.name} className="w-60 h-60 md:rounded-2xl" />
+                            <img src={radioSelected?.favicon ? radioSelected.favicon : IconAlterno} alt={radioSelected?.name} className="w-60 h-60 md:rounded-2xl" onError={
+                                (e) => {
+                                    e.currentTarget.onerror = null
+                                    e.currentTarget.src = IconAlterno
+                                }
+                            } />
                         </div>)
                         :
                         (<div className="w-60 h-60 bg-zinc-500 rounded-sm">
-                            <p className="h-full font-semibold text-zinc-400 text-3xl flex justify-center items-center text-center">{radioSelected?.name.length > 10 ? `${radioSelected.name.slice(0, 20)}`
+                            <img src={radioSelected?.favicon ?
+                                radioSelected?.favicon
                                 :
-                                radioSelected.name
-                            }</p>
+                                IconAlterno
+                            } alt={radioSelected?.name} className="w-full h-full" />
                         </div>)}
                     <h2 className="text-2xl text-white font-semibold inline">{radioSelected && radioSelected?.name?.length > 10 ? `${radioSelected?.name.slice(0, 20)} ...`
                         :
@@ -141,7 +141,7 @@ const RadioPlayer = () => {
                         }
                         <audio ref={AudioRef} src={radioSelected?.url_resolved} preload="auto"></audio>
                     </div>
-                    <div className="">
+                    <div>
                         <MultipleItems suggestedRadios={suggestedRadio} />
                     </div>
                 </div>
@@ -159,7 +159,10 @@ const RadioPlayer = () => {
                             <Link to={`/${radio.name}`} key={radio.stationuuid} className="cursor-pointer ">
                                 {radio.favicon?.trim() !== '' && radio.favicon?.trim() !== 'null' ?
                                     <div className="flex items-center bg-neutral-800 rounded-xl p-2 md:flex-col md:justify-center md:items-center md:w-full md:h-full">
-                                        <img src={radio.favicon} alt={radio.name} className="w-10 h-10" />
+                                        <img src={radio.favicon?.includes('https') ? radio.favicon : IconAlterno} alt={radio.name} className="w-10 h-10 bg-white rounded-sm" onError={(e) => {
+                                            e.currentTarget.onerror = null
+                                            e.currentTarget.src = IconAlterno
+                                        }} />
                                         <p className="text-xs inline w-44 p-2 text-white md:text-center">{radio.name.trim().length > 10 ? `${radio.name.slice(0, 15)} ...`
                                             :
                                             radio.name

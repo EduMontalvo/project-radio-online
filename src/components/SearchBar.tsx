@@ -11,12 +11,12 @@ const SearchBar = ({ setListRadios, defaultListRadios }: SearchBarProps) => {
     const [text, setText] = useState('')
     useEffect(() => {
         const handleDebounce = setTimeout(() => {
-            consultaApi()
+            searchRadio()
         }, 100);
         return () => clearTimeout(handleDebounce)
     }, [text])
 
-    const consultaApi = () => {
+    const searchRadio = () => {
         const newListRadios = defaultListRadios.filter(radio => radio.name.toLowerCase().includes(text.toLowerCase()))
         if (newListRadios.length === 0 || text === '') {
             setListRadios(defaultListRadios)
@@ -27,7 +27,7 @@ const SearchBar = ({ setListRadios, defaultListRadios }: SearchBarProps) => {
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
-            consultaApi()
+            searchRadio()
         }
     }
 
