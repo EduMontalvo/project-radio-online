@@ -1,3 +1,11 @@
+@font-face {
+    font-family: "Doto";
+    src: url("../src/assets/fonts/Doto-Regular.ttf");
+}
+
+@theme{
+    --font-doto: "Doto" , sans-serif;
+}
 @import "tailwindcss";
 
 @keyframes scroll {
