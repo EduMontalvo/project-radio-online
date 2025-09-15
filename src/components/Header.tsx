@@ -1,8 +1,22 @@
+import { animated, useSpring } from "@react-spring/web"
 import { Link } from "react-router-dom"
 
 const Header = () => {
+
+    const styles = useSpring({
+        from: {
+            opacity: 0,
+            transform: 'translateY(-100%)'
+        },
+        to: {
+            opacity: 1,
+            transform: 'translateY(0%)',
+            delay: 500
+        }
+    })
+
     return (
-        <header className="w-full font-doto bg-black text-white fixed font-bold p-4 flex justify-between items-center z-50">
+        <animated.header style={styles} className="w-full font-doto bg-black text-white fixed font-bold p-4 flex justify-between items-center z-50">
             <h1 className="text-2xl inline">SoundRhythm</h1>
             <nav>
                 <ul className="flex space-x-4">
@@ -11,7 +25,7 @@ const Header = () => {
                     <Link to={'/contact'}>Contact</Link>
                 </ul>
             </nav>
-        </header>
+        </animated.header>
     )
 }
 

@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from "react"
-import { DateFormat, FetchApiRadios } from "../utils/date"
-import { ApiOutlined, HeatMapOutlined, HomeOutlined, MutedOutlined, PauseOutlined, ReloadOutlined, RightOutlined, SoundOutlined } from "@ant-design/icons"
-import type { Radio } from "../schema/RadioSchema"
-import { Link, useParams } from "react-router-dom"
-import MultipleItems from "./MultipleItems"
-import SearchBar from "./SearchBar"
+import { useEffect, useRef, useState } from "react";
+import { DateFormat } from "../utils/date";
+import { FetchApiRadios } from "../utils/fetchRadios";
+import { ApiOutlined, HeatMapOutlined, HomeOutlined, MutedOutlined, PauseOutlined, ReloadOutlined, RightOutlined, SoundOutlined } from "@ant-design/icons";
+import type { Radio } from "../schema/RadioSchema";
+import { Link, useParams } from "react-router-dom";
+import MultipleItems from "./MultipleItems";
+import SearchBar from "./SearchBar";
 
 const RadioPlayer = () => {
     const [now, setNow] = useState({ hours: '', minuts: '' })
@@ -111,7 +112,7 @@ const RadioPlayer = () => {
                     </div>
                     <div className=" md:text-zinc-200 md:w-[35%] md:flex md:justify-around mb-2">
                         <ReloadOutlined className="text-xl" onClick={controlReload} />
-                        <div className="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center text-black font-extrabold text-xl hover:bg-red-600">
+                        <div className="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center text-black font-extrabold text-xl hover:bg-red-600 hover:cursor-pointer hover:scale-110 hover:duration-300 hover:ease-in-out hover:text-white">
                             {pause ?
                                 (<RightOutlined onClick={() => controlPlayAndPause(pause)} />)
                                 :
@@ -125,6 +126,7 @@ const RadioPlayer = () => {
                         }
                         <audio ref={AudioRef} src={radioSelected?.url_resolved} preload="auto"></audio>
                     </div>
+                    
                     <div>
                         <MultipleItems suggestedRadios={suggestedRadio} />
                     </div>
@@ -141,7 +143,7 @@ const RadioPlayer = () => {
                         {listRadios.map((radio) =>
                         (
                             <Link to={`/${radio.name}`} key={radio.stationuuid} className="cursor-pointer ">
-                                <div className="flex items-center bg-neutral-800 rounded-xl p-2 md:flex-col md:justify-center md:items-center md:w-full md:h-full">
+                                <div className="flex items-center bg-neutral-800 rounded-xl p-2 md:flex-col md:justify-center md:items-center md:w-full md:h-full hover:bg-neutral-700 hover:scale-110 hover:duration-300 hover:ease-in-out ">
                                     <h2 className="w-10 h-10 bg-white rounded-full  text-2xl text-black  flex items-center justify-center" >
                                         {radio.name.charAt(0)}
                                     </h2>
